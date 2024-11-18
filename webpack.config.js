@@ -12,16 +12,34 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/main.html',
             inject: true,
             chunks: ['index'],
-            filename: 'index.html'
+            filename: 'main.html'
         }),
         new HtmlWebpackPlugin({
-            template: './src/secondPage.html',
+            template: './src/add.html',
             inject: true,
             chunks: ['index'],
-            filename: 'secondPage.html'
+            filename: 'add.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/tasks.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'tasks.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/projects.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'projects.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/about.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'about.html'
         }),
     ],
     module: {
