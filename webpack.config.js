@@ -7,14 +7,34 @@ module.exports = {
 	output: {
 		filename: 'bundle.js', // Имя выходного файла сборки
 		path: path.resolve(__dirname, 'dist'), // Путь для выходного файла сборки
+		assetModuleFilename: 'images/picture.svg',
+	},
+
+	devServer: {
+		liveReload: true,
 	},
 
 	module: {
 		rules: [
 			{
-				test: /\.css$/, // Регулярное выражение для обработки файлов с расширением .css
-				use: ['style-loader', 'css-loader'], // Загрузчики, используемые для обработки CSS-файлов
-			},
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			  },
+			  {
+				test: /\.(png|jpe?g|gif|svg)$/,
+				type: 'asset/resource',
+			  },
+			{
+				test: /\.svg$/,
+				use: [
+				  {
+					loader: 'svg-url-loader',
+					options: {
+					  limit: 8192, // Определяет порог, выше которого будет использоваться отдельный файл
+					},
+				  },
+				],
+			  },
 		],
 	},
 
@@ -50,10 +70,10 @@ module.exports = {
 			filename: 'tasks.html',
 		}),
 		new HtmlWebpackPlugin({
-			template: './src/info.html',
+			template: './src/about.html',
 			inject: true,
 			chunks: ['index'],
-			filename: 'info.html',
+			filename: 'about.html',
 		}),
 	],
 

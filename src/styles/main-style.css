@@ -142,6 +142,7 @@ body {
   font-size: 90px;
   line-height: 100%;
   margin-bottom: 20px;
+  color: #EC9706;
 }
 
 .main-text {
@@ -149,14 +150,6 @@ body {
   font-size: 18px;
   line-height: 130%;
   margin-bottom: 40px;
-}
-
-.main-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  max-width: 50%;
 }
 
 /* Медиа-запросы для мобильных устройств */
@@ -244,10 +237,6 @@ body {
 
   .main-text {
     font-size: 14px; /* Меньший текст */
-  }
-
-  .main-image {
-    display: none; /* Прячем изображение на мобильных */
   }
 
   .button {
