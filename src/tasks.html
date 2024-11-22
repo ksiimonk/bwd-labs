@@ -5,6 +5,7 @@
     <title>Список задач</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/tasks-style.css" />
+    <link rel="stylesheet" href="styles/add.css" />
     <link
       rel="shortcut icon"
       href="images/favicon-32x32.ico"
@@ -12,6 +13,7 @@
     />
     <script defer src="scripts/burger.js"></script>
     <link rel="icon" href="images/favicon-32x32.ico" type="Image/x-icon" />
+    <script defer src="scripts/modal.js"></script>
   </head>
   <body>
     <header class="header">
@@ -45,50 +47,36 @@
       <div class="container">
         <div class="table-info">
           <h1 class="main-title">Задачи</h1>
-          <a href="add.html" class="button">Добавить новую задачу</a>
+          <button id="open-dialog-btn" class="button">Добавить задачу</button>
         </div>
       </div>
       <div class="container">
         <div class="main-table">
-          <div class="task-column">
+          <div id="todo-column" class="task-column">
             <h2>Задачи</h2>
-            <div class="task-item">
-              <input type="checkbox" /> Задача1
-              <button class="button delete-btn">Удалить</button>
-            </div>
-            <div class="task-item">
-              <input type="checkbox" /> Задача4
-              <button class="button delete-btn">Удалить</button>
-            </div>
           </div>
         
-          <div class="task-column">
+          <div id="in-progress-column" class="task-column">
             <h2>В процессе</h2>
-            <div class="task-item">
-              <input type="checkbox" /> Задача2
-              <button class="button delete-btn">Удалить</button>
-            </div>
-            <div class="task-item">
-              <input type="checkbox" /> Задача5
-              <button class="button delete-btn">Удалить</button>
-            </div>
           </div>
         
-          <div class="task-column">
+          <div id="done-column" class="task-column">
             <h2>Выполнены</h2>
-            <div class="task-item completed">
-              <input type="checkbox" /> Задача3
-              <button class="button delete-btn">Удалить</button>
-            </div>
-            <div class="task-item completed">
-              <input type="checkbox" /> Задача6
-              <button class="button delete-btn">Удалить</button>
-            </div>
           </div>
         </div>        
         </div>
       </div>
     </section>
-    <script src="bundle.js"></script>
+    <dialog id="task-dialog">
+      <form method="dialog">
+        <h2>Новая задача</h2>
+        <input id="task-input" type="text" placeholder="Введите задачу" class="enter">
+        <menu>
+          <button class="button" id="submit-task-btn">Добавить</button>
+          <button class="button" id="close-dialog-btn">Отмена</button>
+        </menu>
+      </form>
+    </dialog>
+    <script defer src="bundle.js"></script>
   </body>
 </html>
