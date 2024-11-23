@@ -1,7 +1,7 @@
 {
   "name": "onemoretry",
   "version": "1.0.0",
-  "description": "Сапунова Екатерина Сергеевна ПрИ-22",
+  "description": "Колотилин Семён Олегович ПрИ-22",
   "main": "burger.js",
   "scripts": {
     "start": "webpack serve",

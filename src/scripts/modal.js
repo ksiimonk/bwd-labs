@@ -9,18 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const inProgressColumn = document.getElementById("in-progress-column");
   const doneColumn = document.getElementById("done-column");
 
-  // Модальное окно для комментариев
-  const commentModal = document.createElement("dialog");
-  commentModal.id = "comment-modal";
-  commentModal.innerHTML = `
-    <h2>Комментарии</h2>
-    <div id="comment-list"></div>
-    <input type="text" id="new-comment" placeholder="Введите комментарий" />
-    <button id="add-comment-btn" class="button">Добавить комментарий</button>
-    <button id="close-comment-modal" class="button">Закрыть</button>
-  `;
-  document.body.appendChild(commentModal);
-
   // Загрузка данных из localStorage
   const tasksData = JSON.parse(localStorage.getItem("tasksData")) || {
     todo: [],
