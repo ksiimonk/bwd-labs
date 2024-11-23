@@ -8,19 +8,26 @@
 body {
   background-color: #ffffff;
   font-family: "TT Norms", sans-serif;
+  overflow-x: hidden; /* Убираем горизонтальную прокрутку */
 }
 
 /* Основной контейнер */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%; /* Убираем максимальную ширину */
   padding: 0 15px; /* Отступы для адаптации */
+  box-sizing: border-box; /* Учитываем отступы в общей ширине */
 }
 
 .main-content {
   display: flex;
   flex-direction: column; /* Элементы идут сверху вниз */
   align-items: center; /* Центрируем элементы по горизонтали */
+  justify-content: center; /* Центрируем элементы по вертикали */
+  min-height: 100vh; /* Высота основного содержимого - вся высота окна */
+  padding: 20px; /* Добавляем немного внутреннего отступа */
+  padding-top: 260px;
+  width: 100%; /* Обеспечиваем, чтобы контейнер не выходил за экран */
+  box-sizing: border-box;
 }
 
 /* Header (шапка сайта) */
@@ -85,6 +92,7 @@ body {
   transform: translateY(0) rotate(-45deg);
 }
 
+/* Навигация */
 .navigation {
   margin-left: 0; /* Убираем фиксированные отступы */
 }
@@ -93,6 +101,8 @@ body {
   list-style: none;
   display: flex;
   gap: 50px; /* Пространство между элементами */
+  flex-wrap: wrap; /* Позволяем элементам переноситься на новые строки */
+  justify-content: center;
 }
 
 .navigation-item a {
@@ -153,67 +163,28 @@ body {
   background-color: #b83434;
 }
 
-.main-content {
-  display: flex; /* Включаем флекс-контейнер */
-  flex-direction: column; /* Элементы располагаются вертикально */
-  align-items: center; /* Центрируем элементы по горизонтали */
-  justify-content: center; /* Центрируем элементы по вертикали */
-  min-height: 100vh; /* Высота основного содержимого - вся высота окна */
-  padding: 20px; /* Добавляем немного внутреннего отступа */
-  padding-top: 260px;
-}
-
-
-.task-column {
-  max-height: 500px; /* Лимит высоты */
-  overflow-y: auto; /* Вертикальная прокрутка */
-  width: 300px; /* Задайте фиксированную ширину */
-  margin: 0 auto; /* Центрируем колонки */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.table-info {
-  position: sticky;
-  top: 0;
-  background-color: #ffffff;
-  z-index: 10;
-  margin-bottom: 20px;
-}
-
-.main-title {
-  font-family: "Steppe-ExtraBold", sans-serif;
-  font-size: 90px;
-  line-height: 100%;
-  margin-bottom: 20px;
-  margin-top: auto;
-}
-
-.main-text {
-  max-width: 697px;
-  font-size: 18px;
-  line-height: 130%;
-  margin-bottom: 40px;
-}
-
-.main-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  max-width: 50%;
-}
-
-/* Основные настройки для задач */
+/* Основное содержимое */
 .main-table {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap; /* Разрешаем элементам располагаться в несколько строк */
+  justify-content: space-between; /* Одинаковое расстояние между колонками */
   gap: 20px;
   padding: 10px;
   background-color: #f3f3f3;
   border-radius: 8px;
+  align-items: flex-start; /* Карточки не растягиваются по высоте */
+}
+
+.task-column {
+  max-height: 500px; /* Лимит высоты для колонок */
+  overflow-y: auto; /* Добавляем прокрутку */
+  width: 100%; /* Убираем фиксированную ширину, делаем колонку адаптивной */
+  max-width: 300px; /* Ограничиваем максимальную ширину */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Расстояние между задачами */
 }
 
 .task-column h2 {
@@ -223,15 +194,46 @@ body {
   text-align: center;
 }
 
+/* Задачи */
 .task-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start; /* Выравнивание элементов по верхнему краю */
+  gap: 10px; /* Расстояние между чекбоксом, текстом и кнопками */
   background-color: rgba(255, 191, 0, 0.3);
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   width: 100%;
+  flex-wrap: nowrap; /* Элементы остаются в одной строке */
+  overflow: hidden; /* Убираем выход элементов за границы */
+  min-height: 60px; /* Минимальная высота карточки задачи */
+  flex-shrink: 0; /* Запрещаем карточке сжиматься */
+}
+
+.task-item input[type="checkbox"] {
+  flex-shrink: 0; /* Чекбокс не сжимается */
+  margin-top: 4px; /* Для вертикального выравнивания */
+  align-self: flex-start; /* Чекбокс остается на своем месте */
+}
+
+.task-item .task-text {
+  flex-grow: 1; /* Текст занимает оставшееся пространство */
+  word-wrap: break-word; /* Перенос длинных слов */
+  overflow-wrap: break-word; /* Совместимость с другими браузерами */
+  white-space: normal; /* Разрешаем перенос текста */
+  margin: 0; /* Убираем лишние отступы */
+  line-height: 1.5; /* Удобочитаемость текста */
+  min-width: 0; /* Позволяем тексту сужаться */
+  width: 100%; /* Убираем ограничение по ширине */
+}
+
+.task-item .task-actions {
+  display: flex;
+  flex-direction: column; /* Кнопки располагаются вертикально */
+  gap: 8px; /* Расстояние между кнопками */
+  flex-shrink: 0; /* Кнопки не сжимаются */
+  align-items: flex-end; /* Выравниваем кнопки по правому краю */
+  align-self: flex-start; /* Кнопки остаются на одном уровне с верхом текста */
 }
 
 .task-item button {
@@ -240,10 +242,6 @@ body {
 
 .task-item.completed {
   background-color: rgba(0, 191, 0, 0.2); /* Зеленый фон для завершенных задач */
-}
-
-.task-item input[type="checkbox"] {
-  margin-right: 10px;
 }
 
 /* Медиа-запросы для мобильных устройств */
@@ -257,6 +255,7 @@ body {
     position: absolute;
     left: 20%;
     top: 200px;
+    width: 80%; /* Делаем контейнер уже на мобильных устройствах */
   }
 
   .navigation {
@@ -270,9 +269,9 @@ body {
   }
 
   .navigation-list {
-    flex-direction: column;
-    gap: 20px; /* Расстояние между элементами уменьшаем */
-    padding: 60px 20px 20px 20px; /* Отступы для удобства */
+    flex-direction: column; /* Элементы меню идут в колонку */
+    gap: 20px;
+    padding: 60px 20px 20px 20px;
   }
 
   .navigation-item {
@@ -283,55 +282,30 @@ body {
   }
 
   .main-title {
-    font-size: 60px; /* Уменьшаем размер заголовка на планшетах */
+    font-size: 60px;
   }
 
   .main-text {
-    font-size: 16px; /* Меньший текст на планшетах */
+    font-size: 16px;
   }
 
   .main-image {
-    max-width: 80%; /* Уменьшаем изображение */
-    position: relative;
-    top: auto;
-    right: auto;
+    max-width: 80%;
     margin-top: 20px;
   }
 
-  .header.open .navigation {
-    transform: translateX(100%);
-  }
-
   .main-table {
-    flex-direction: column;
-    gap: 15px;
+    display: block;
+    padding: 20px;
+    gap: 20px;
   }
 
   .task-column {
-    width: 100%;
+    width: 100%; /* Задачи занимают всю ширину на мобильных устройствах */
   }
 
   .task-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-title {
-    font-size: 40px; /* Еще меньше заголовок */
-  }
-
-  .main-text {
-    font-size: 14px; /* Меньший текст */
-  }
-
-  .main-image {
-    display: none; /* Прячем изображение на мобильных */
-  }
-
-  .button {
-    width: 100%; /* Кнопки растягиваются на всю ширину */
+    flex-direction: column; /* Раскладываем элементы вертикально */
+    text-align: center;
   }
 }

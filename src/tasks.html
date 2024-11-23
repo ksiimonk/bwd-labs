@@ -67,16 +67,30 @@
         </div>
       </div>
     </section>
-    <dialog id="task-dialog">
-      <form method="dialog">
-        <h2>Новая задача</h2>
-        <input id="task-input" type="text" placeholder="Введите задачу" class="enter">
-        <menu>
-          <button class="button" id="submit-task-btn">Добавить</button>
-          <button class="button" id="close-dialog-btn">Отмена</button>
-        </menu>
-      </form>
-    </dialog>
-    <script defer src="bundle.js"></script>
+  <!-- Модальное окно для добавления задачи -->
+  <dialog id="task-dialog">
+    <form method="dialog">
+      <h2>Добавить задачу</h2>
+      <input type="text" id="task-input" placeholder="Введите текст задачи" required />
+      <menu>
+        <button id="submit-task-btn" class="button">Добавить</button>
+        <button id="close-task-dialog" class="button">Отмена</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Модальное окно для комментариев -->
+  <dialog id="comments-dialog">
+    <form method="dialog">
+      <h2>Комментарии к задаче</h2>
+      <ul id="comments-list"></ul>
+      <input type="text" id="new-comment-input" placeholder="Введите комментарий" />
+      <menu>
+        <button id="add-comment-btn" class="button">Добавить</button>
+        <button id="close-comments-dialog" class="button">Закрыть</button>
+      </menu>
+    </form>
+  </dialog>
+    <script defer src="bundle.js"></script>   
   </body>
 </html>
